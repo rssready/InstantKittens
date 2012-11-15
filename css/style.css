@@ -78,7 +78,7 @@ body { font-family:'Covered By Your Grace', cursive; color:#fff; }
 /* == Page Layout */
 
 /* Header */
-header { background:#ef46aa; height:55px; padding:0; width:100%; position:absolute; top:0; z-index: 2; color:#fff; overflow:hidden; font-size:24px; line-height:55px; z-index:2; }
+header { background:#ef46aa; height:55px; padding:0; width:100%; position:absolute; top:0; z-index: 2; color:#fff; font-size:24px; line-height:55px; z-index:2; }
 #kitty-counter { float:right; margin-right:20px; }
 #kitty-counter span { font-size:40px; font-weight:bold; line-height:40px; position:relative; top:3px; }
 #social { float:right; }
