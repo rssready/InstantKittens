@@ -46,11 +46,11 @@
             
         </div>
         
-        <div id="kitty-counter">You've enjoyed <span>1</span> snuggly cuddly kittins. Share?</div>
+        <div id="kitty-counter">You've enjoyed <span>1</span> snuggly cuddly kittens. Share?</div>
 
     </header>
 
-    <div id="kitty"></div>
+    <div id="kitty" onClick="_gaq.push(['_trackEvent', 'clicks', 'nextImage', 'KittyClicked', 1]);"></div>
 
     <div id="about">
         <h2>Instant Kittens</h2>
@@ -73,5 +73,19 @@ This site was created by members of <a href="http://www.room214.com" target="_bl
     </footer>
 
     <audio id="music" src="not-unusual.wav" preload="auto" autobuffer loop controls autoplay></audio>
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-429670-13']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+    </script>
   </body>
 </html>
