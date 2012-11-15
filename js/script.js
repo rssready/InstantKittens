@@ -68,7 +68,12 @@ $(document).ready(function(){
       {image : 'img/053.gif'},
       {image : 'img/054.gif'},
       {image : 'img/055.gif'},
-      {image : 'img/056.gif'}
+      {image : 'img/056.gif'},
+      {image : 'img/057.gif'},
+      {image : 'img/058.gif'},
+      {image : 'img/059.gif'},
+      {image : 'img/060.gif'},
+      {image : 'img/061.gif'}
       ];
 
       var newKitty = function(){
@@ -82,7 +87,7 @@ $(document).ready(function(){
       $('#kitty').css( 'background-image' , 'url(' + slides[imageNum].image + ')' );
 
       // Click
-      $('html').click(function() {
+      $('#kitty').click(function() {
         newKitty();
       });
 
@@ -97,6 +102,60 @@ $(document).ready(function(){
              return false;
           }
       });
+      
+    // == Audio Stuff
+    pauseMusic();
+    
+    // == About section
+    $('#open').click(function(e){
+        e.preventDefault();
+        
+        $(this).addClass('active');
+        $('#about').slideDown();
+    });
+    $('#close').click(function(e){
+        e.preventDefault();
+        
+        $('#open').removeClass('active');
+        $('#about').slideUp();
+    });
 
 });
+
+// Clicktoggle function
+(function($) {
+    $.fn.clickToggle = function(func1, func2) {
+        var funcs = [func1, func2];
+        this.data('toggleclicked', 0);
+        this.click(function(e) {
+        	e.preventDefault();
+            var data = $(this).data();
+            var tc = data.toggleclicked;
+            $.proxy(funcs[tc], this)();
+            data.toggleclicked = (tc + 1) % 2;
+        });
+        return this;
+    };
+}(jQuery));
+
+
+// Pause
+function pauseMusic () {            
+    $('#pause').clickToggle(
+        function(){
+            $('#music')[0].pause();
+            $(this).addClass('muted');
+        },
+        function(){
+            $('#music')[0].play();
+            $(this).removeClass('muted');
+        }
+    );
+}
+
+
+
+
+
+
 
