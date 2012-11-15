@@ -13,112 +13,167 @@ $(document).ready(function(){
     });
 
     var slides = [
-      {image : 'img/001.gif'},
-      {image : 'img/002.gif'},
-      {image : 'img/003.gif'},
-      {image : 'img/004.gif'},
-      {image : 'img/005.gif'},
-      {image : 'img/006.gif'},
-      {image : 'img/007.gif'},
-      {image : 'img/008.gif'},
-      {image : 'img/009.gif'},
-      {image : 'img/010.gif'},
-      {image : 'img/011.gif'},
-      {image : 'img/012.gif'},
-      {image : 'img/013.gif'},
-      {image : 'img/014.gif'},
-      {image : 'img/015.gif'},
-      {image : 'img/016.gif'},
-      {image : 'img/017.gif'},
-      {image : 'img/018.gif'},
-      {image : 'img/019.gif'},
-      {image : 'img/020.gif'},
-      {image : 'img/021.gif'},
-      {image : 'img/022.gif'},
-      {image : 'img/023.gif'},
-      {image : 'img/024.gif'},
-      {image : 'img/025.gif'},
-      {image : 'img/026.gif'},
-      {image : 'img/027.gif'},
-      {image : 'img/028.gif'},
-      {image : 'img/029.gif'},
-      {image : 'img/030.gif'},
-      {image : 'img/031.gif'},
-      {image : 'img/032.gif'},
-      {image : 'img/033.gif'},
-      {image : 'img/034.gif'},
-      {image : 'img/035.gif'},
-      {image : 'img/036.gif'},
-      {image : 'img/037.gif'},
-      {image : 'img/038.gif'},
-      {image : 'img/039.gif'},
-      {image : 'img/040.gif'},
-      {image : 'img/041.gif'},
-      {image : 'img/042.gif'},
-      {image : 'img/043.gif'},
-      {image : 'img/044.gif'},
-      {image : 'img/045.gif'},
-      {image : 'img/046.gif'},
-      {image : 'img/047.gif'},
-      {image : 'img/048.gif'},
-      {image : 'img/049.gif'},
-      {image : 'img/050.gif'},
-      {image : 'img/051.gif'},
-      {image : 'img/052.gif'},
-      {image : 'img/053.gif'},
-      {image : 'img/054.gif'},
-      {image : 'img/055.gif'},
-      {image : 'img/056.gif'},
-      {image : 'img/057.gif'},
-      {image : 'img/058.gif'},
-      {image : 'img/059.gif'},
-      {image : 'img/060.gif'},
-      {image : 'img/061.gif'}
+      {image : '001.gif'},
+      {image : '002.gif'},
+      {image : '003.gif'},
+      {image : '004.gif'},
+      {image : '005.gif'},
+      {image : '006.gif'},
+      {image : '007.gif'},
+      {image : '008.gif'},
+      {image : '009.gif'},
+      {image : '010.gif'},
+      {image : '011.gif'},
+      {image : '012.gif'},
+      {image : '013.gif'},
+      {image : '014.gif'},
+      {image : '015.gif'},
+      {image : '016.gif'},
+      {image : '017.gif'},
+      {image : '018.gif'},
+      {image : '019.gif'},
+      {image : '020.gif'},
+      {image : '021.gif'},
+      {image : '022.gif'},
+      {image : '023.gif'},
+      {image : '024.gif'},
+      {image : '025.gif'},
+      {image : '026.gif'},
+      {image : '027.gif'},
+      {image : '028.gif'},
+      {image : '029.gif'},
+      {image : '030.gif'},
+      {image : '031.gif'},
+      {image : '032.gif'},
+      {image : '033.gif'},
+      {image : '034.gif'},
+      {image : '035.gif'},
+      {image : '036.gif'},
+      {image : '037.gif'},
+      {image : '038.gif'},
+      {image : '039.gif'},
+      {image : '040.gif'},
+      {image : '041.gif'},
+      {image : '042.gif'},
+      {image : '043.gif'},
+      {image : '044.gif'},
+      {image : '045.gif'},
+      {image : '046.gif'},
+      {image : '047.gif'},
+      {image : '048.gif'},
+      {image : '049.gif'},
+      {image : '050.gif'},
+      {image : '051.gif'},
+      {image : '052.gif'},
+      {image : '053.gif'},
+      {image : '054.gif'},
+      {image : '055.gif'},
+      {image : '056.gif'},
+      {image : '057.gif'},
+      {image : '058.gif'},
+      {image : '059.gif'},
+      {image : '060.gif'},
+      {image : '061.gif'}
       ];
 
-      var newKitty = function(){
-        var imageNum  = Math.floor((Math.random()*slides.length)+1);
-        $('#kitty').css( 'background-image' , 'url(' + slides[imageNum].image + ')' );
-        kittah_count++;
-        $('#kitty-counter span').text(kittah_count);
-      }
+        var newKitty = function(){
+            
+            // How many images are there?
+            var imageNum  = Math.floor((Math.random()*slides.length)+1);
+            
+            $('#kitty').css( 'background-image' , 'url(img/' + slides[imageNum].image + ')' ).attr('kitty' , slides[imageNum].image);
+            
+            kittah_count++;
+            $('#kitty-counter span').text(kittah_count);
+            
+            // Tracking
+            _gaq.push(['_trackEvent', 'clicks', 'nextImage', 'KittyClicked', 1]);
+            
+            // Nix hash tag
+            var url = window.location.hash;
+            if (url != ''){
+                window.location.hash = ''
+            }
+        }
 
-      var imageNum  = Math.floor((Math.random()*slides.length)+1);
-      $('#kitty').css( 'background-image' , 'url(' + slides[imageNum].image + ')' );
-
-      // Click
-      $('#kitty').click(function() {
-        newKitty();
-      });
-
-      // Arrows Buttons
-      $(document).keydown(function(e){
-          if (e.keyCode == 37) { 
-             newKitty();
-             return false;
-          }
-          if (e.keyCode == 39) { 
-             newKitty();
-             return false;
-          }
-      });
-      
-    // == Audio Stuff
-    pauseMusic();
-    
-    // == About section
-    $('#open').click(function(e){
-        e.preventDefault();
+        // Query String Stuff
+        var url = window.location.hash;
         
-        $(this).addClass('active');
-        $('#about').slideDown();
-    });
-    $('#close').click(function(e){
-        e.preventDefault();
+        if (url != ''){
+            var permaLink = url.replace('#kitty=' , '');
+            $('#kitty').css( 'background-image' , 'url(img/' + permaLink + '.gif)' ).attr('kitty' , permaLink);   
+        }
+        else {
+            var imageNum  = Math.floor((Math.random()*slides.length)+1);
+            $('#kitty').css( 'background-image' , 'url(img/' + slides[imageNum].image + ')' ).attr('kitty' , slides[imageNum].image);
+        }
+
+        // Click
+        $('#kitty').click(function() {
+            newKitty();
+        });
         
-        $('#open').removeClass('active');
-        $('#about').slideUp();
-    });
+        // Arrows Buttons
+        $(document).keydown(function(e){
+            if (e.keyCode == 32) { 
+                newKitty();
+                return false;
+            }
+        });
+        
+        // == Audio Stuff
+        pauseMusic();
+        
+        // == About section
+        $('#open').click(function(e){
+            e.preventDefault();
+            
+            $(this).addClass('active');
+            $('#about').slideDown();
+        });
+        $('#about .close').click(function(e){
+            e.preventDefault();
+            
+            $('#open').removeClass('active');
+            $('#about').slideUp();
+        });
+        
+        // Link Stuff
+        $('#link-open').click(function(e){
+            e.preventDefault();
+            
+            $('#link').slideDown();
+            
+            var currentCat = $('#kitty').attr('kitty').replace('.gif', '');
+
+            $('#link').find('input').val('http://instantkittens.com/#kitty=' + currentCat);
+        });
+        $('#link .close').click(function(e){
+            e.preventDefault();
+            
+            $('#link').slideUp();
+        });
+
+        $('#copy').click(function(e) {
+            e.preventDefault();
+            
+            $(this).zclip({
+                path:'js/ZeroClipboard.swf',
+                copy:function(){return $('#link input').val();
+                }
+            });
+            
+        });
+        
+        $('#link input').focus(function(){
+            var $this = $(this);
+           $this.select();
+           $this.mouseup(function() {
+                // Prevent further mouseup intervention
+                $this.unbind("mouseup");
+                return false;
+            });
+        });
 
 });
 
