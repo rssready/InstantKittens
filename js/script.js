@@ -1,6 +1,13 @@
 $(document).ready(function(){
 
-    var kittah_count = 1;
+    var kittah_count = readCookie('kittahcount');
+    if(kittah_count == null) {
+        kittah_count = 1;
+        createCookie('kittahcount', 1, 1000);
+    } else {
+        kittah_count = parseInt(kittah_count);
+    }
+    $('#kitty-counter span').text(kittah_count);
 
     var winWidth = $(window).width();
     var winHeight = $(window).height();
@@ -85,6 +92,7 @@ $(document).ready(function(){
             
             kittah_count++;
             $('#kitty-counter span').text(kittah_count);
+            createCookie('kittahcount', kittah_count, 1000);
             
             // Tracking
             _gaq.push(['_trackEvent', 'clicks', 'nextImage', 'KittyClicked', 1]);
@@ -98,7 +106,6 @@ $(document).ready(function(){
 
         // Query String Stuff
         var url = window.location.hash;
-        
         if (url != ''){
             var permaLink = url.replace('#kitty=' , '');
             $('#kitty').css( 'background-image' , 'url(img/' + permaLink + '.gif)' ).attr('kitty' , permaLink);   
