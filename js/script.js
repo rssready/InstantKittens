@@ -1,6 +1,13 @@
 $(document).ready(function(){
 
-    var kittah_count = 1;
+    var kittah_count = readCookie('kittahcount');
+    if(kittah_count == null) {
+        kittah_count = 1;
+        createCookie('kittahcount', 1, 1000);
+    } else {
+        kittah_count = parseInt(kittah_count);
+    }
+    $('#kitty-counter span').text(kittah_count);
 
     var winWidth = $(window).width();
     var winHeight = $(window).height();
@@ -80,6 +87,7 @@ $(document).ready(function(){
         var imageNum  = Math.floor((Math.random()*slides.length)+1);
         $('#kitty').css( 'background-image' , 'url(' + slides[imageNum].image + ')' );
         kittah_count++;
+        createCookie('kittahcount', kittah_count, 1000);
         $('#kitty-counter span').text(kittah_count);
       }
 
