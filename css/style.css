@@ -83,7 +83,7 @@ header { background:#ef46aa; height:55px; padding:0; width:100%; position:absolu
 #kitty-counter span { font-size:40px; font-weight:bold; line-height:40px; position:relative; top:3px; }
 #social { float:right; }
 .uiIconText { display:none !important; }
-.fb-like { position:relative; top:-5px; float:left; margin-right:20px; }
+.fb-like { position:relative; top:-5px; float:left; margin-right:20px;overflow: hidden !important; height: 43px !important; }
 #twitter-button { position:relative; top:4px; float:left; }
 
 #link-open { width:58px; height:55px; display:block; float:right; background-position:-48px -137px; border-left:1px solid #fff; }
