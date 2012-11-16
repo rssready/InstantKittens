@@ -1,6 +1,9 @@
+var kittah_count = '';
+var slides = '';
+
 $(document).ready(function(){
 
-    var kittah_count = 1;
+    kittah_count = 1;
 
     var winWidth = $(window).width();
     var winHeight = $(window).height();
@@ -12,7 +15,7 @@ $(document).ready(function(){
       $('#wrap').css({ 'height' : winHeight , 'width' : winWidth });
     });
 
-    var slides = [
+    slides = [
       {image : '001.gif'},
       {image : '002.gif'},
       {image : '003.gif'},
@@ -236,26 +239,6 @@ $(document).ready(function(){
         {image: '221.gif'}
       ];
 
-        var newKitty = function(){
-            
-            // How many images are there?
-            var imageNum  = Math.floor((Math.random()*slides.length)+1);
-            
-            $('#kitty').css( 'background-image' , 'url(img/' + slides[imageNum].image + ')' ).attr('kitty' , slides[imageNum].image);
-            
-            kittah_count++;
-            $('#kitty-counter span').text(kittah_count);
-            
-            // Tracking
-            _gaq.push(['_trackEvent', 'clicks', 'nextImage', 'KittyClicked', 1]);
-            
-            // Nix hash tag
-            var url = window.location.hash;
-            if (url != ''){
-                window.location.hash = ''
-            }
-        }
-
         // Query String Stuff
         var url = window.location.hash;
         
@@ -303,10 +286,8 @@ $(document).ready(function(){
             e.preventDefault();
             
             $('#link').slideDown();
+            changePerma();
             
-            var currentCat = $('#kitty').attr('kitty').replace('.gif', '');
-
-            $('#link').find('input').val('http://instantkittens.com/#kitty=' + currentCat);
         });
         $('#link .close').click(function(e){
             e.preventDefault();
@@ -368,7 +349,34 @@ function pauseMusic () {
     );
 }
 
+// New Kitty
+function newKitty () {
+            
+    // How many images are there?
+    var imageNum  = Math.floor((Math.random()*slides.length)+1);
+    
+    $('#kitty').css( 'background-image' , 'url(img/' + slides[imageNum].image + ')' ).attr('kitty' , slides[imageNum].image);
+    
+    kittah_count++;
+    $('#kitty-counter span').text(kittah_count);
+    
+    // Tracking
+    _gaq.push(['_trackEvent', 'clicks', 'nextImage', 'KittyClicked', 1]);
+    
+    // Nix hash tag
+    var url = window.location.hash;
+    if (url != ''){
+        window.location.hash = ''
+    }
+    
+    changePerma();
+}
 
+// Permalink
+function changePerma () {
+    var currentCat = $('#kitty').attr('kitty').replace('.gif', '');
+    $('#link').find('input').val('http://instantkittens.com/#kitty=' + currentCat);
+}
 
 
 
