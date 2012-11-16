@@ -242,6 +242,8 @@ $(document).ready(function(){
         // Click
         $('#kitty').click(function() {
             newKitty();
+            // Tracking
+            _gaq.push(['_trackEvent', 'clicks', 'nextImage', 'KittyClicked', 1]);
         });
         
         // Arrows Buttons
@@ -249,6 +251,8 @@ $(document).ready(function(){
             if (e.keyCode == 32) { 
                 newKitty();
                 return false;
+                // Tracking
+                _gaq.push(['_trackEvent', 'clicks', 'nextImage', 'SpaceBarPressed', 1]);
             }
         });
         
@@ -347,9 +351,6 @@ function newKitty () {
     
     kittah_count++;
     $('#kitty-counter span').text(kittah_count);
-    
-    // Tracking
-    _gaq.push(['_trackEvent', 'clicks', 'nextImage', 'KittyClicked', 1]);
     
     // Nix hash tag
     var url = window.location.hash;
